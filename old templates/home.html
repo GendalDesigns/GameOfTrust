@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Server Home</title>
+</head>
+<nav style="
+height:auto;
+width:auto;
+margin: 0px 20px;
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+align-items:center;">
+    <h1>Home Page for {{ userID[0].first_name }}</h1>
+    
+    <div style="
+    display: flex;
+    width:225px;
+    justify-content: space-between;">
+    <h4><a href="/paintings/new" class="btn btn-primary shadow shadow-2px">Player Controls</a></h4>
+    <h4><a href="/logout" class="btn btn-danger shadow shadow-2px">Logout</a></h4>
+    </div>
+</nav>
+<body>
+    <div class="container">
+        <h2>Player # Stats</h2>
+        <p>{ %for player in players% }</p>
+        <div class="container d-flex" style="
+        width:fit-content;
+        border:2px solid black;">
+            <table class="table table-striped">
+                <tfoot>
+                    <th>Player # Current Vote</th>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>Current Vote</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped">
+                <tfoot>
+                    <th>Player # Previous Votes</th>
+                </tfoot>
+                <tbody>
+                    <div class="d-flex">
+                    <!-- {% for vote in votes %} -->
+                        <div class="container">
+                            <tr>
+                                <td>Vote1</td>
+                            </tr>
+                            <tr>
+                                <td>Vote2</td>
+                            </tr>
+                            <tr>
+                                <td>Vote3</td>
+                            </tr>
+                        </div>
+                        <div class="container">
+                            <tr>
+                                <td>Vote1</td>
+                            </tr>
+                            <tr>
+                                <td>Vote2</td>
+                            </tr>
+                            <tr>
+                                <td>Vote3</td>
+                            </tr>
+                        </div>
+                    <!-- {% endfor %} -->
+                    </div>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- End of Container -->
+
+
+
+
+    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p class="alert alert-success" role="alert" style="width:fit-content;">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+<script>$(document).ready(function() {
+    // Use a "/my_namespace" namespace.
+    namespace = '/my_namespace';
+	
+    // Connect to the Socket.IO server.
+    // The connection URL has the following format, 
+	// relative to the current page:
+    // http[s]://<domain>:<port>[/<namespace>]
+    var socket = io(namespace);
+    
+	// The callback function is invoked when a connection with the
+    // server is established.
+    socket.on('connect', function() {
+        socket.emit('my_event', {
+            data: 'I\'m connected!'
+        });
+    });
+    
+	// Event handler for server sent data.
+    // The callback function is invoked whenever the server emits data
+    // to the client. The data is then displayed in the "Received"
+    // section of the page.
+    socket.on('i said', function(msg) {
+        $('#log').append('<br>' + $('<div/>').text('Received #' + msg.count + ': ' + msg.data).html());
+    });
+});</script>
+
+
+
+
+
+
+<!-- Script from Flask-SocketIO website for Initialization. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+    socket.on('connect', function() {
+        socket.emit('my event', {data: 'I\'m connected!'});
+    });
+</script>
+</body>
+</html>

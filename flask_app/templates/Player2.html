@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Player 2 Screen</title>
+</head>
+<nav style="
+height:auto;
+width:auto;
+margin: 10px 20px;
+display:flex;
+flex-direction:row;
+justify-content:flex-end;
+align-items:center;">
+    <div style="
+    display: flex;
+    width:175px;
+    justify-content: space-between;">
+    <h4><a href="/home/clear" class="btn btn-success shadow shadow-2px">Choose Player</a></h4>
+    <!-- <h4><a href="/logout" class="btn btn-danger shadow shadow-2px">Logout</a></h4> -->
+    </div>
+</nav>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <h1>Player 2</h1>
+                <h3>Coin Total: <span id="coinCount">{{data['coins']}}</span></h3>
+            </div>
+            <div class="col"></div>
+        </div> <!-- End of Row -->
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col d-flex">
+                    <form id="coopForm" action="" method="POST" class="">
+                      <input type="hidden" class="coopVote" value="coop"/>
+                      <button id="cooperate" type="submit" value="cooperate" class="btn btn-primary shadow shadow-2px">Cooperate</button>
+                    </form>
+                    <span class="align-middle"><h5>or</h5></span>
+
+                    <form id="cheatForm" action="" method="POST" class="">
+                      <input type="hidden" class="cheatVote" value="cheat"/>
+                      <button id="cheat" type="submit"value="cheat" class="btn btn-primary shadow shadow-2px">Cheat</button>
+                    </form>
+                </div>
+                <div class="col"></div>
+        </div><!-- End of Row -->
+
+    </div> <!-- End of container -->
+<br>
+
+    <h3 id="noMSG" style='color: #ccc;font-size: 30px;'>No message yet..</h3>
+    <div class="message_holder"></div>
+    <form id="chatForm" action="" method="POST">
+      <input type="text" class="username" placeholder="User Name"/>
+      <input type="text" class="message" placeholder="Messages"/>
+      <input type="submit"/>
+    </form>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script> -->
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/player_script.js') }}"></script>
+    <script type="text/javascript">
+/*
+      var socket = io.connect('http://' + document.domain + ':' + location.port);
+      socket.on( 'connect', function() {
+        socket.emit( 'my event', {
+          data: 'User Connected'
+        } )
+
+        var form = $( '#chatForm' ).on( 'submit', function( e ) { //for sending chat messages
+          e.preventDefault()
+          let user_name = $( 'input.username' ).val()
+          let user_input = $( 'input.message' ).val()
+          socket.emit( 'my event', {
+            user_name : user_name,
+            message : user_input
+          } )
+          $( 'input.message' ).val( '' ).focus()//highlights the message field
+        } )
+
+
+        var form = $( '#coopForm' ).on( 'submit', function( e ) { //to send the cheat value
+          e.preventDefault()
+          let vote = $( 'input.coopVote' ).val()
+          socket.emit( 'my vote', {
+            vote : vote,
+          } )
+        } )
+
+
+        var form = $( '#cheatForm' ).on( 'submit', function( e ) { //to send the cheat value
+          e.preventDefault()
+          //let player = '1'.val()
+          let vote = $( 'input.cheatVote' ).val()
+          socket.emit( 'my vote', {
+            //player : player,
+            vote : vote,
+          } )
+        } )
+      } )
+
+
+      socket.on( 'my response', function( msg ) {
+        if( typeof msg.user_name !== 'undefined' ) {
+          $( '#noMSG' ).remove()
+          $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
+        }
+      })
+
+
+      socket.on( 'my vote response', function( msg ) {//vote response
+        if( typeof msg.vote !== 'undefined' ) {
+          $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.Player+'</b> '+msg.vote+'</div>' )
+        }
+      })
+*/
+    </script>
+
+  </body>
+  </html>

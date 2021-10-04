@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Player Screen</title>
+</head>
+<nav style="
+height:auto;
+width:auto;
+margin: 10px 20px;
+display:flex;
+flex-direction:row;
+justify-content:flex-end;
+align-items:center;">
+    <div style="
+    display: flex;
+    width:175px;
+    justify-content: space-between;">
+        <h4><a href="/paintings" class="btn btn-success shadow shadow-2px">Home</a></h4>
+        <h4><a href="/logout" class="btn btn-danger shadow shadow-2px">Logout</a></h4>
+    </div>
+</nav>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <h1>Player #</h1>
+                <h3>Coin Total: #</h3>
+            </div>
+            <div class="col"></div>
+        </div> <!-- End of Row -->
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <p>Player 2 has [Cheated]!</p>
+                <p>Player 2 has decided!</p>
+            </div>
+            <div class="col"></div>
+        </div><!-- End of Row -->
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                    <form action="/vote/process" method="POST" class="d-flex">
+                    <button type="submit" value="Create" class="btn btn-primary shadow shadow-2px">Cooperate</button>
+                    <h5>or</h5>
+                    <button type="submit" value="Create" class="btn btn-primary shadow shadow-2px">Cheat</button>
+                </form>
+                </div>
+                <div class="col"></div>
+        </div><!-- End of Row -->
+
+    </div> <!-- End of container -->
+</body>
+</html>
